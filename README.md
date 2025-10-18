@@ -42,43 +42,16 @@ ikarus_rec_app/
 git clone https://github.com/PreetKundi/IKARUS-AI_ML-ASSIGNMENT.git
 cd IKARUS-AI_ML-ASSIGNMENT
 
-### BACKEND
+
+### 2. Backend setup
+```bash
 cd backend
 python -m venv .venv
 .venv\Scripts\activate   # Windows
-# source .venv/bin/activate  # Linux/Mac
+# source .venv/bin/activate   # Linux/Mac
 
 pip install -r requirements.txt
 
-Run the backend:
-uvicorn backend.app:app --reload --port 8000
-
-3. Frontend setup
-cd ../frontend
-npm install
-npm run dev
-
-Tech Stack
-
-Backend: FastAPI, Uvicorn, Pandas, NumPy
-
-Frontend: React, Vite, Tailwind (optional)
-
-Deployment: Render (free tier)
-
-ML: Embedding model (configurable in utils/config.py)
-
-services:
-  - type: web
-    name: ikarus
-    env: python
-    plan: free
-    buildCommand: |
-      pip install -r backend/requirements.txt
-      cd frontend && npm ci && npm run build && cd ..
-      rm -rf backend/frontend_dist
-      mkdir -p backend/frontend_dist
-      cp -r frontend/dist/* backend/frontend_dist/
-    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+      
 
 
