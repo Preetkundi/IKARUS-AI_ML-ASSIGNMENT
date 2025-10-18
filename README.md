@@ -31,3 +31,21 @@ ikarus_rec_app/
 │  └─ requirements.txt      # Python dependencies
 ├─ frontend/                # React/Vite frontend
 └─ README.md
+```
+
+## 🛠 Tech Stack
+
+### 🔹 Backend
+- **FastAPI** → Lightweight, fast web framework  
+- **Uvicorn** → ASGI server  
+- **Pandas / NumPy** → Data preprocessing and analytics  
+- **Embeddings** (e.g. `all-MiniLM-L6-v2`) → Product similarity search  
+
+### 🎨 Frontend
+- **React + Vite** → Modern frontend tooling  
+- **TailwindCSS (optional)** → Clean, responsive styling  
+
+### ☁️ Deployment
+- **Render (Free Tier)** → Serves both backend + frontend  
+- **Single service**: API under `/api`, frontend at `/`  
+
