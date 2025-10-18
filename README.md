@@ -18,13 +18,15 @@ A full-stack AI/ML-powered **product recommendation platform**, built with:
 ---
 
 ## 📂 Project Structure
-
 ikarus_rec_app/
 ├─ backend/
 │ ├─ app.py # FastAPI entrypoint
-│ ├─ data/products.csv # Raw dataset
-│ ├─ models/recommender.py # Recommendation engine
-│ ├─ utils/config.py # Settings (paths, embedding model, etc.)
+│ ├─ data/
+│ │ └─ products.csv # Raw dataset
+│ ├─ models/
+│ │ └─ recommender.py # Recommendation engine
+│ ├─ utils/
+│ │ └─ config.py # Settings (paths, embedding model, etc.)
 │ └─ requirements.txt # Python dependencies
 ├─ frontend/ # React/Vite frontend
 └─ README.md
