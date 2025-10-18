@@ -58,7 +58,7 @@ They allow us to compare **user queries vs. product descriptions** in vector spa
 ---
 
 ### 🔹 CV (Computer Vision)
-- **CNN / Vision Transformers (ViT/ResNet)** → Used for image-based embeddings (optional extension).  
+- **CNN / Vision Transformers (ViT/ResNet)** → Used for image-based embeddings 
 - These models help classify product images into categories (e.g., shoes, shirts) and improve recommendation accuracy.  
 
 ---
@@ -71,8 +71,8 @@ They allow us to compare **user queries vs. product descriptions** in vector spa
 ---
 
 ### 🔹 Vector Database
-- **FAISS (local option)** → Used in this project to index and search embeddings efficiently.  
-- **Pinecone / Weaviate / Milvus** (cloud options) → Could be used for scalable, production-ready semantic search.  
+- **FAISS ** → Used in this project to index and search embeddings efficiently.  
+
 
 Why vector DB?  
 Embeddings are high-dimensional vectors → we need a fast similarity search engine for real-time recommendations.
@@ -93,37 +93,60 @@ Frontend Responsibilities:
 
 ### 📊 Analytics
 - **Matplotlib / Seaborn** → For data visualization (price distribution, top brands, categories).  
-- **Pandas Profiling (optional)** → For EDA on dataset.  
+- **Pandas Profiling ** → For EDA on dataset.  
 - **React Charts (Recharts, Chart.js)** → For rendering analytics charts on the frontend.  
 
 ---
 
 ### ☁️ Deployment
-- **Render (Free Tier)** → Chosen for simplicity, allows serving both backend + frontend in one service.  
-- **Docker (optional)** → Can be used for containerizing the app.  
-- **Gunicorn + Uvicorn Workers** → If scaling backend.  
+- **Render** → Chosen for simplicity, allows serving both backend + frontend in one service.  
 
-Deployment Design:
-- **Single Service**:  
-  - Frontend served at `/`  
-  - API available at `/api/...`  
-  - Swagger docs at `/docs`  
+
+
+
+---
+## ▶️ How to Run This Project
+
+Follow these steps to run the **Ikarus Product Recommendation System** locally:
 
 ---
 
-### 🔗 Integration Layer
-- **LangChain** → Used as an orchestration framework (if GenAI + embeddings are combined).  
-- It helps chain:  
-  - User input → Embeddings → Vector DB search → GenAI → Final recommendations.  
+### 1. Clone the repository
+```bash
+git clone https://github.com/PreetKundi/IKARUS-AI_ML-ASSIGNMENT.git
+cd IKARUS-AI_ML-ASSIGNMENT
+```
 
----
+### 2. Setup and run the Backend (FastAPI)
+```bash
+cd backend
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+# source .venv/bin/activate   # Linux/Mac
 
-✅ This stack ensures the project covers all requirements:  
-- ML model for recommendations  
-- NLP embeddings for semantic similarity  
-- CV (optional) for image classification  
-- GenAI for creative product descriptions  
-- Vector DB for search  
-- React frontend + FastAPI backend  
-- Analytics for insights  
-- Deployment on Render for single-URL access
+pip install -r requirements.txt
+```
+Run the backend:
+```bash
+uvicorn backend.app:app --reload --port 8000
+```
+
+### 3. Setup and run the Frontend (React + Vite)
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+
+4. Using the Application
+
+Open the frontend in your browser → http://127.0.0.1:5173
+
+Enter a query (e.g., "red running shoes")
+
+The app will call the backend /api/recommend endpoint and show recommended products.
+
+Use /api/analytics or the frontend analytics page to view product trends, price distribution, and top categories.
+
+
+
