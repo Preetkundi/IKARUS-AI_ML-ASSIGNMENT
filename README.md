@@ -1,45 +1,80 @@
-# Ikarus – Product Recommendation/Analytics Web App
+# 🛒 Ikarus – Product Recommendation System
 
-End‑to‑end ML web app built with **FastAPI (backend)**, **React (frontend)**, and a **vector database (FAISS local; Pinecone optional)**.  
-It recommends furniture using text similarity and generates creative blurbs. An analytics page summarizes the dataset.
+A full-stack AI/ML-powered **product recommendation platform**, built with:
 
-## Quickstart
+- **FastAPI** (backend API)
+- **React/Vite** (frontend UI)
+- **ML embeddings** (for similarity-based product recommendations)
 
-### 1) Backend
+---
+
+## ✨ Features
+- 🔍 Content-based product recommendations  
+- 📊 Analytics endpoint for category/brand/price insights  
+- 🖼 Image proxy endpoint to safely load external product images  
+- 🖥 React frontend served directly by FastAPI (single deployment, no CORS issues)  
+- ⚡ Deployable on **Render** / **Railway** in one click  
+
+---
+
+## 📂 Project Structure
+ikarus_rec_app/
+├─ backend/
+│ ├─ app.py # FastAPI entrypoint
+│ ├─ data/products.csv # Raw dataset
+│ ├─ models/recommender.py # Recommendation engine
+│ ├─ utils/config.py # Settings (paths, embedding model, etc.)
+│ └─ requirements.txt # Python dependencies
+├─ frontend/ # React/Vite frontend
+└─ README.md
+
+
+---
+
+## 🚀 Getting Started (Local Development)
+
+### 1. Clone the repo
 ```bash
+git clone https://github.com/PreetKundi/IKARUS-AI_ML-ASSIGNMENT.git
+cd IKARUS-AI_ML-ASSIGNMENT
+
+### BACKEND
 cd backend
-python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -m venv .venv
+.venv\Scripts\activate   # Windows
+# source .venv/bin/activate  # Linux/Mac
+
 pip install -r requirements.txt
-uvicorn app:app --reload --port 8000
-```
 
-### 2) Frontend
-```bash
+Run the backend:
+uvicorn backend.app:app --reload --port 8000
+
+3. Frontend setup
 cd ../frontend
-npm i
-cp .env.example .env   # update VITE_API_URL if backend runs elsewhere
+npm install
 npm run dev
-```
 
-Open http://localhost:5173 and ask for recommendations.
+Tech Stack
 
-## How it works
+Backend: FastAPI, Uvicorn, Pandas, NumPy
 
-- **Embeddings**: `sentence-transformers/all-MiniLM-L6-v2` creates vectors from joined text fields.
-- **Vector DB**: FAISS (cosine similarity). Swap with Pinecone by wiring LangChain's `PineconeVectorStore` (left as an exercise; env vars already present).
-- **GenAI descriptions**: A small rule‑based `CopyWriter` provides diverse, non‑plagiarized blurbs without external APIs. If you set `OPENAI_API_KEY`, plug LangChain LLM for richer text.
-- **Analytics**: `/analytics` returns top brands, avg price per category, price summary, and missingness.
+Frontend: React, Vite, Tailwind (optional)
 
-## Endpoints
-- `POST /recommend` → `{prompt, top_k, filters}` returns items (with `gen_description`).
-- `GET /item/{uniq_id}` → a single item.
-- `GET /analytics` → dataset summaries for the Analytics page.
+Deployment: Render (free tier)
 
-## Notebooks
-- `notebooks/data_analytics.ipynb` – EDA and plots.
-- `notebooks/model_training.ipynb` – builds FAISS index; try a qualitative search.
+ML: Embedding model (configurable in utils/config.py)
 
-## Notes
-- The image classifier module is scaffolded; train via a separate notebook if you curate labeled images.
-- Keep the dataset intact (no column drops). All transformations are non-destructive.
-- Code is modular and well-commented to support grading for clarity and reasoning.
+services:
+  - type: web
+    name: ikarus
+    env: python
+    plan: free
+    buildCommand: |
+      pip install -r backend/requirements.txt
+      cd frontend && npm ci && npm run build && cd ..
+      rm -rf backend/frontend_dist
+      mkdir -p backend/frontend_dist
+      cp -r frontend/dist/* backend/frontend_dist/
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+
+
