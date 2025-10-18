@@ -128,7 +128,7 @@ pip install -r requirements.txt
 ```
 Run the backend:
 ```bash
-uvicorn backend.app:app --reload --port 8000
+uvicorn app:app --reload --port 8000
 ```
 
 ### 3. Setup and run the Frontend (React + Vite)
