@@ -1,19 +1,18 @@
 # 🛒 Ikarus – Product Recommendation System
 
-A full-stack AI/ML-powered **product recommendation platform**, built with:
+Ikarus is a full-stack **AI/ML-powered product recommendation platform**.  
+It provides **personalized recommendations** using embeddings, analytics for pricing/brands, and a frontend that integrates seamlessly with the backend.  
 
-- **FastAPI** (backend API)
-- **React/Vite** (frontend UI)
-- **ML embeddings** (for similarity-based product recommendations)
+The system is designed to mimic **real-world e-commerce recommendation engines**, combining **data preprocessing, ML embeddings, and a React frontend**.
 
 ---
 
-## ✨ Features
-- 🔍 Content-based product recommendations  
-- 📊 Analytics endpoint for category/brand/price insights  
-- 🖼 Image proxy endpoint to safely load external product images  
-- 🖥 React frontend served directly by FastAPI (single deployment, no CORS issues)  
-- ⚡ Deployable on **Render** / **Railway** in one click  
+## ✨ Key Features
+- 🔍 **Content-based recommendations** using text embeddings  
+- 📊 **Analytics endpoints**: price distribution, brand/category trends  
+- 🖼 **Image proxy API**: safely serve product images without CORS issues  
+- 🖥 **React + Vite frontend** served directly by FastAPI (single deployment)  
+- ⚡ **Deployable on Render** with one click (backend + frontend together)  
 
 ---
 
@@ -23,35 +22,12 @@ ikarus_rec_app/
 ├─ backend/
 │  ├─ app.py                # FastAPI entrypoint
 │  ├─ data/
-│  │  └─ products.csv       # Raw dataset
+│  │  ├─ products.csv       # Raw dataset
+│  │  └─ products_clean.csv # Preprocessed dataset
 │  ├─ models/
-│  │  └─ recommender.py     # Recommendation engine
+│  │  └─ recommender.py     # Content-based recommendation engine
 │  ├─ utils/
 │  │  └─ config.py          # Settings (paths, embedding model, etc.)
 │  └─ requirements.txt      # Python dependencies
 ├─ frontend/                # React/Vite frontend
 └─ README.md
-
-
----
-
-## 🚀 Getting Started (Local Development)
-
-### 1. Clone the repo
-```bash
-git clone https://github.com/PreetKundi/IKARUS-AI_ML-ASSIGNMENT.git
-cd IKARUS-AI_ML-ASSIGNMENT
-
-
-### 2. Backend setup
-```bash
-cd backend
-python -m venv .venv
-.venv\Scripts\activate   # Windows
-# source .venv/bin/activate   # Linux/Mac
-
-pip install -r requirements.txt
-
-      
-
-
