@@ -18,6 +18,7 @@ A full-stack AI/ML-powered **product recommendation platform**, built with:
 ---
 
 ## 📂 Project Structure
+
 ikarus_rec_app/
 ├─ backend/
 │ ├─ app.py # FastAPI entrypoint
